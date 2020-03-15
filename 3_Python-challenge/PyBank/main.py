@@ -4,7 +4,7 @@ import csv
 PyBankcsv = os.path.join("budget_data.csv")
 PyBankanalysis = os.path.join("PyBankanalysis.txt")
 
-#variable definition 
+#set up variables for future use
 date = []
 profandloss = [] 
 change = 0
@@ -12,6 +12,7 @@ monthscount = 0 #Total number of months
 pl = 0 #profit/loss
 months = 0
 
+# **FIND**:
 #The total number of months included in the dataset
 #The net total amount of "Profit/Losses" over the entire period
 #The average of the changes in "Profit/Losses" over the entire period
@@ -20,29 +21,32 @@ months = 0
 
 #open the CSV file through the defined path earlier
 with open(PyBankcsv, newline = "") as csvfile:
+    # read the csv file and read the commas as cell distributors
     x = csv.reader(csvfile, delimiter = ",")
 #header row
-    y= next(x)
+    y = next(x)
 
     #Reading the first row
     y = next(x)
-    monthscount=monthscount + 1
-    pl =pl + int(y[1])
+    # 0+1 = 1
+    monthscount = monthscount + 1
+    pl = pl + int(y[1])
     months = int(y[1])
     
     #Forloop to go through each row
     # i represents the rows
     for i in x:
         
+        # '0' represents the first row as the empty list was created for date
         date.append(i[0])
         
-        # Calculate the change, then add it to list of changes
+        # Calculate the change, then add it to list of changes for each row
         change = int(i[1])-months
-        profandloss .append(change)
+        profandloss.append(change)
         months = int(i[1])
         
         #The total number of months included in the dataset
-        monthscount=monthscount + 1
+        monthscount = monthscount + 1
 
         #The net total amount of "Profit and/or Losses"
         pl = pl + int(i[1])
