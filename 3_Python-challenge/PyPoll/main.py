@@ -22,7 +22,7 @@ with open(PollData, 'r') as csvfile,\
     #{} will store them in a dictionary
 	percent = {} #percent is defining the percentage of candidates
      #{} will store them in a dictionary
-	votect = 0 #votect is defining the count of votes
+	votecount = 0 #votecount is defining the count of votes
 	
 	# we are looping throgh each row of data in election data
     #i is defined as row number
@@ -34,8 +34,8 @@ with open(PollData, 'r') as csvfile,\
 			cvotes[i[2]] =cvotes[i[2]]+ 1
 
 
-		#loopinf through and calculating the total number of votes
-		votect =votect + 1
+		#looping through and calculating the total number of votes
+		votecount = votecount + 1
 
 	# The total number of votes each candidate won
 	winner = max(cvotes.values())
@@ -48,7 +48,7 @@ with open(PollData, 'r') as csvfile,\
 	for candidates, votes in clist_votes:
 
 		# calculate the percentage of votes to store in a dictionary in a percentage format
-		votespct = "{0:.0f}".format((votes/votect)*100)
+		votespct = "{0:.0f}".format((votes/votecount)*100)
 		percent[candidates] = votespct
 
 
@@ -59,7 +59,7 @@ with open(PollData, 'r') as csvfile,\
 	
 	election_results = f"""
 	Final Election Results
-	Total Votes = {votect}
+	Total Votes = {votecount}
 	{clist[0]}: {percent[clist[0]]}% ({cvotes[clist[0]]})
 	{clist[1]}: {percent[clist[1]]}% ({cvotes[clist[1]]})
 	{clist[2]}: {percent[clist[2]]}% ({cvotes[clist[2]]})
